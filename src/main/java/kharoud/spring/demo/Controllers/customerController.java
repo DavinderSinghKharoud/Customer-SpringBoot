@@ -16,6 +16,7 @@ public class customerController {
          this.customerService = customerService;
     }
 
+
     @RequestMapping("/customers")
     public String listProducts(Model model){
         model.addAttribute("customers", customerService.listAllCustomes());
