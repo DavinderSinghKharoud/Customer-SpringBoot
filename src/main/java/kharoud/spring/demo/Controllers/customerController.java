@@ -2,9 +2,11 @@ package kharoud.spring.demo.Controllers;
 
 import kharoud.spring.demo.Model.Customer;
 import kharoud.spring.demo.Services.CustomerService;
+import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -36,5 +38,11 @@ public class customerController {
 
         Customer savedCustomer = customerService.saveOrUpdateCustomer(customer);
         return "redirect:/customers";
+    }
+
+    @RequestMapping("/customers/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model){
+        model.addAttribute("customer", customerService.getCustomerById(id));
+        return "customerForm";
     }
 }

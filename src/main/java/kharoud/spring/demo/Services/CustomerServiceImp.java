@@ -29,6 +29,17 @@ public class CustomerServiceImp implements CustomerService {
         }
     }
 
+    @Override
+    public Customer getCustomerById(Integer id) {
+        return customers.get(id);
+    }
+
+    @Override
+    public void deleteCustomer(Integer id) {
+        customers.remove(id);
+    }
+
+
     private Integer getNextKey(){
         return Collections.max(customers.keySet()) + 1;
     }
