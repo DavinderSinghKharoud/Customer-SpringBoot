@@ -21,7 +21,7 @@ public class customerController {
     }
 
 
-    @RequestMapping("/customers")
+    @RequestMapping("/customers/list")
     public String listProducts(Model model){
         model.addAttribute("customers", customerService.listAllCustomes());
         return "customers";
@@ -37,7 +37,7 @@ public class customerController {
     public String saveOrUpdateCustomer(Customer customer){
 
         Customer savedCustomer = customerService.saveOrUpdateCustomer(customer);
-        return "redirect:/customers";
+        return "redirect:/customers/list";
     }
 
     @RequestMapping("/customers/edit/{id}")
@@ -49,6 +49,6 @@ public class customerController {
     @RequestMapping("/customers/delete/{id}")
     public String delete(@PathVariable Integer id){
         customerService.deleteCustomer(id);
-        return "redirect:/customers";
+        return "redirect:/customers/list";
     }
 }
