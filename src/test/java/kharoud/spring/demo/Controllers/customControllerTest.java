@@ -14,13 +14,13 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.instanceOf;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 public class customControllerTest {
@@ -69,4 +69,14 @@ public class customControllerTest {
                 .andExpect(model().attribute("customer", instanceOf(Customer.class)));
     }
 
+
+    @Test
+    public void deleteTest() throws Exception{
+
+        mockMvc.perform(get("/customers/delete/1"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/customers/list"));
+
+        verify(customerService, times(1)).deleteCustomer(1);
+    }
 }
