@@ -1,8 +1,25 @@
 package kharoud.spring.demo.Model;
 
-public class Customer {
+import javax.persistence.*;
 
+@Entity
+public class Customer implements DomainObject {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @Version
+    private Integer version;
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
+
     private String firstName;
     private String lastName;
     private String email;
@@ -11,6 +28,17 @@ public class Customer {
     private String city;
     private String state;
     private String zipCode;
+
+    @OneToOne(cascade = {CascadeType.ALL})
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Integer getId() {
         return id;

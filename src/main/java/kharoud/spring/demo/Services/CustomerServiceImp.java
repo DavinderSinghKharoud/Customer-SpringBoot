@@ -1,11 +1,13 @@
 package kharoud.spring.demo.Services;
 
 import kharoud.spring.demo.Model.Customer;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
+@Profile("java")
 public class CustomerServiceImp implements CustomerService {
 
     private Map<Integer,Customer> customers;
