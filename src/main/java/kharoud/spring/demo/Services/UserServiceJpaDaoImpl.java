@@ -54,7 +54,7 @@ public class UserServiceJpaDaoImpl implements UserService {
         }
 
         User saveduser = em.merge(domainObject);
-        em.getTransaction().commit();
+       // em.getTransaction().commit();
 
         return saveduser;
     }
